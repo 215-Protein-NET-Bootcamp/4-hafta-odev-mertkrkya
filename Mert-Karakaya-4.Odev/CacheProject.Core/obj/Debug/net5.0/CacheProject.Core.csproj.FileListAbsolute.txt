@@ -1,0 +1,12 @@
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\bin\Debug\net5.0\CacheProject.Core.deps.json
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\bin\Debug\net5.0\CacheProject.Core.dll
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\bin\Debug\net5.0\ref\CacheProject.Core.dll
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\bin\Debug\net5.0\CacheProject.Core.pdb
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.csproj.AssemblyReference.cache
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.AssemblyInfoInputs.cache
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.AssemblyInfo.cs
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.csproj.CoreCompileInputs.cache
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.dll
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\ref\CacheProject.Core.dll
+C:\Users\karak\source\repos\Mert-Karakaya-4.Odev\CacheProject.Core\obj\Debug\net5.0\CacheProject.Core.pdb
