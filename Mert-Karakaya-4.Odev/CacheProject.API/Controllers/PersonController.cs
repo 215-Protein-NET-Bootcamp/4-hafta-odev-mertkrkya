@@ -36,7 +36,12 @@ namespace JWTProject.API.Controllers
                 response = await _service.GetAllAsync();
                 if (!response.isSuccess)
                     return BadRequest(response);
-                _memoryCache.Set(key, response);
+                MemoryCacheEntryOptions options = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpiration = DateTime.Now.AddMinutes(10),
+                    Priority = CacheItemPriority.Normal
+                };
+                _memoryCache.Set(key, response,options);
             }
             if(response != null && response.data != null)
             {
