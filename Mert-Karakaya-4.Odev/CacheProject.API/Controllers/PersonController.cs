@@ -9,95 +9,53 @@ using CacheProject.Core.Entities;
 using CacheProject.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JWTProject.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _service;
         private readonly ILogger<PersonController> _logger;
-        public PersonController(IPersonService service, ILogger<PersonController> logger)
+        private readonly IMemoryCache _memoryCache;
+        public PersonController(IPersonService service, ILogger<PersonController> logger, IMemoryCache memoryCache)
         {
             _service = service;
             _logger = logger;
+            _memoryCache = memoryCache;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetByPaginationAsync([FromQuery] string key, [FromQuery] int pageNum, [FromQuery] int pageSize)
         {
-            var result = await _service.GetAllAsync();
-            if (!result.isSuccess)
-                return BadRequest(result);
-            if (result.data == null)
-                return NoContent();
-
-            return Ok(result);
-        }
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetByIdAsync(int id)
-        {
-            _logger.LogInformation($"Get a Person with Id is {id}.");
-
-            var result = await _service.GetByIdAsync(id);
-            if (!result.isSuccess)
-                return BadRequest(result);
-            if (result.data == null)
-                return NoContent();
-
-            return Ok(result);
-        }
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] PersonDto entity)
-        {
-            var validationResult = Validator.Validator.PersonValidator(entity);
-            if (!string.IsNullOrWhiteSpace(validationResult))
+            _logger.LogInformation($"Pagination with key: {key}");
+            ResponseEntity response = null;
+            if(!_memoryCache.TryGetValue<ResponseEntity>(key,out response))
             {
-                return BadRequest(new ResponseEntity(validationResult));
+                response = await _service.GetAllAsync();
+                if (!response.isSuccess)
+                    return BadRequest(response);
+                _memoryCache.Set(key, response);
             }
-            var result = await _service.InsertAsync(entity);
-
-            if (!result.isSuccess)
-                return BadRequest(result);
-
-            _logger.LogInformation($"Created a Person.");
-            return StatusCode(201, result);
-
-        }
-        [Authorize]
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateAsync(int id, [FromBody] PersonDto entity)
-        {
-            var validationResult = Validator.Validator.PersonValidator(entity);
-            if (!string.IsNullOrWhiteSpace(validationResult))
+            if(response != null && response.data != null)
             {
-                return BadRequest(new ResponseEntity(validationResult));
+                if (pageNum < 0)
+                    pageNum = 1;
+                try
+                {
+                    var responseData = (List<PersonDto>)response.data;
+                    var resultData = responseData.Skip((pageNum - 1) * pageNum).Take(pageSize).ToList();
+                    return Ok(new ResponseEntity(resultData));
+                }
+                catch (Exception e)
+                {
+                    string errorMessage = $"Type cast error. Error Message: " + e.Message;
+                    _logger.LogError(errorMessage);
+                    return BadRequest(new ResponseEntity(errorMessage));
+                }
             }
-            var result = await _service.UpdateAsync(id, entity);
-
-            if (!result.isSuccess)
-                return BadRequest(result);
-
-            _logger.LogInformation($"Update a Person {User.Identity.Name}.");
-            return Ok(result);
-        }
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteAsync(int id)
-        {
-            var validationResult = Validator.Validator.PersonDeleteValidator(id);
-            if (!string.IsNullOrWhiteSpace(validationResult))
-            {
-                return BadRequest(new ResponseEntity(validationResult));
-            }
-            var result = await _service.DeleteAsync(id);
-
-            if (!result.isSuccess)
-                return BadRequest(result);
-
-            _logger.LogInformation($"Delete a Person with Id is {id}.");
-            return Ok(result);
-
+            return NoContent();
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj": {}
+    "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj": {
+    "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj",
         "projectName": "CacheProject.Core",
-        "projectPath": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj",
+        "projectPath": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\obj\\",
+        "outputPath": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj": {
+    "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj",
+        "projectUniqueName": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj",
         "projectName": "CacheProject.Data",
-        "projectPath": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj",
+        "projectPath": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Data\\CacheProject.Data.csproj",
         "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Data\\obj\\",
+        "outputPath": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj": {
-                "projectPath": "C:\\Users\\karak\\source\\repos\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj"
+              "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj": {
+                "projectPath": "C:\\Users\\karak\\Documents\\GitHub\\4-hafta-odev-mertkrkya\\Mert-Karakaya-4.Odev\\CacheProject.Core\\CacheProject.Core.csproj"
               }
             }
           }
@@ -99,6 +99,12 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
             },

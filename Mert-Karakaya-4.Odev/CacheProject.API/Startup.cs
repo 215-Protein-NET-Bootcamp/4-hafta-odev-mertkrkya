@@ -11,6 +11,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using CacheProject.Core.Repositories;
+using CacheProject.Core.Services;
+using CacheProject.Core.UnitofWork;
+using CacheProject.Data.Context;
+using CacheProject.Data.Repositories;
+using CacheProject.Data.UnitOfWorks;
+using CacheProject.Service.Mapper;
+using CacheProject.Service.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace CacheProject.API
 {
@@ -26,12 +36,34 @@ namespace CacheProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //AppDbContext Defination
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            AppDbContext.SetContextConnectionString(Configuration.GetConnectionString("DefaultConnection"));
+            //response cache
+            services.AddControllersWithViews(options =>
+                options.CacheProfiles.Add("MainCache", new CacheProfile()
+                {
+                    Duration = 600,
+                    Location = ResponseCacheLocation.Any,
+                    NoStore = true
+                }));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CacheProject.API", Version = "v1" });
             });
+            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IUnitofWork, UnitOfWork>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            services.AddSingleton(mapperConfig.CreateMapper());
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
